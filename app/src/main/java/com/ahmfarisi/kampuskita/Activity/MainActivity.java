@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.controls.actions.FloatAction;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -26,11 +28,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
     private RecyclerView rvKampus;
-
     private FloatingActionButton fabTambah;
-
     private ProgressBar pbKampus;
 
     private RecyclerView.Adapter adKampus;
@@ -46,15 +45,22 @@ public class MainActivity extends AppCompatActivity {
         fabTambah = findViewById(R.id.fab_tambah);
         pbKampus = findViewById(R.id.pb_kampus);
 
-        lmKampus = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        lmKampus = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         rvKampus.setLayoutManager(lmKampus);
 
         fabTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, TambahActivity.class));
+
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveKampus();
     }
 
     public void retrieveKampus(){
@@ -75,14 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 adKampus.notifyDataSetChanged();
 
                 pbKampus.setVisibility(View.GONE);
+
             }
 
             @Override
             public void onFailure(Call<ModelResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "gagal menghubungi server!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "gagal menghubungi server!",Toast.LENGTH_SHORT).show();
                 pbKampus.setVisibility(View.GONE);
             }
         });
-
     }
 }

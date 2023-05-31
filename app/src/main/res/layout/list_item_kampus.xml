@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_id"
@@ -43,7 +42,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="2"
-            android:layout_marginTop="6dp">
+            android:layout_marginTop="6dp"
+            >
 
             <Button
                 android:id="@+id/btn_ubah"
@@ -51,20 +51,20 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_ubah"
                 android:text="ubah"
-                android:drawableLeft="@drawable/ic_ubah"/>
+                android:drawableLeft="@drawable/ic_ubah"
+                android:layout_marginRight="2dp"/>
 
             <Button
                 android:id="@+id/btn_hapus"
                 android:layout_width="match_parent"
-                android:layout_height="48
-"
+                android:layout_height="48dp"
                 android:src="@drawable/ic_hapus"
                 android:text="hapus"
-                android:drawableLeft="@drawable/ic_hapus"/>
+                android:drawableLeft="@drawable/ic_hapus"
+                android:layout_marginLeft="2dp"/>
 
 
         </LinearLayout>
-
 
     </LinearLayout>
 

@@ -19,7 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TambahActivity extends AppCompatActivity {
-    private EditText etNama, etKota, etAlamat;
+    private EditText etNama, etKota,etAlamat;
     private Button btnTambah;
     private String nama, kota, alamat;
 
@@ -41,13 +41,13 @@ public class TambahActivity extends AppCompatActivity {
                 alamat = etAlamat.getText().toString();
 
                 if(nama.trim().isEmpty()){
-                    etNama.setError("Nama Tidak Boleh Kosong!!!!");
+                    etNama.setError("Nama Tidak Boleh Kosong!!!!!!");
                 }
-                else if(kota.trim().isEmpty()){
-                    etKota.setError("Kota Tidak Boleh Kosong!!!");
+                else if (kota.trim().isEmpty()){
+                    etKota.setError("Kota Tidak Boleh Kosonglah Bangg");
                 }
-                else if(alamat.trim().isEmpty()){
-                    etAlamat.setError("Alamat Tidak Boleh Kosong!!!");
+                else if (alamat.trim().isEmpty()) {
+                    etAlamat.setError("Alamat Jangan Kau Kosongin Juga");
                 }
                 else{
                     tambahKampus();
@@ -57,7 +57,7 @@ public class TambahActivity extends AppCompatActivity {
     }
     private void tambahKampus(){
         APIRequestData API = RetroServer.konekRetrofit().create(APIRequestData.class);
-        Call<ModelResponse> proses = API.ardCreate(nama, kota, alamat);
+        Call<ModelResponse> proses = API.ardCreate(nama,kota, alamat);
 
         proses.enqueue(new Callback<ModelResponse>() {
             @Override
@@ -67,16 +67,15 @@ public class TambahActivity extends AppCompatActivity {
                 pesan = response.body().getPesan();
 
 
-                Toast.makeText(TambahActivity.this, "kode :" + kode + "Pesam :" + pesan,Toast.LENGTH_SHORT).show();
+                Toast.makeText(TambahActivity.this, "kode :" + kode + "Pesan : " + pesan, Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFailure(Call<ModelResponse> call, Throwable t) {
-                Toast.makeText(TambahActivity.this, "eror: Gagal Menghubungi Server!", Toast.LENGTH_SHORT).show();
-                Log.d("DISINI", "Erornya Itu" + t.getMessage());
+                Toast.makeText(TambahActivity.this, "eror:Gagal Menghubungi server!", Toast.LENGTH_SHORT).show();
+                Log.d("DISINI","Erornya itu:" + t.getMessage());
             }
         });
-
     }
 }
